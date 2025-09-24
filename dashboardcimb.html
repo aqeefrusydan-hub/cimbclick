@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CIMB Clicks - Mockup (Login + Dashboard)</title>
+  <title>CIMB Clicks</title>
   <style>
     :root {
       --cimb-red:#d71920;
@@ -100,7 +100,7 @@
   <div class="login-container" id="loginSection">
     <div class="card">
       <img src="logo.png" alt="CIMB Logo" class="logo">
-      <h2>Welcome to CIMB Clicks (Demo)</h2>
+      <h2>Welcome to CIMB Clicks</h2>
       <form id="loginForm">
         <div class="input-group">
           <label for="username">User ID</label>
@@ -112,14 +112,13 @@
         </div>
         <button type="submit">Login</button>
       </form>
-      <p class="note">⚠️ This is a mock project for demo only.</p>
     </div>
   </div>
 
   <div class="dashboard-container" id="dashboardSection">
     <div class="dashboard">
       <div class="nav">
-        <h2>CIMB Clicks Demo</h2>
+        <h2>CIMB Clicks</h2>
         <button class="logout" id="logoutBtn">Logout</button>
       </div>
       <div class="grid">
@@ -172,7 +171,7 @@
         loginSection.style.display = "none";
         dashboardSection.style.display = "flex";
       } else {
-        alert("Invalid credentials (demo only)");
+        alert("Invalid credentials");
       }
     });
 
@@ -183,7 +182,7 @@
 
     transferForm.addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("Transfer successful (demo only)");
+      alert("Transfer successful");
       transferForm.reset();
     });
   </script>
