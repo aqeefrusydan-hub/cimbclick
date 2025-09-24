@@ -115,6 +115,29 @@
     </div>
   </div>
 
+  <script>
+    // Demo credentials for FYP
+    const demoUser = "admin";
+    const demoPass = "1234";
+
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent form refresh
+
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === demoUser && pass === demoPass) {
+        alert("Login successful! Redirecting...");
+        window.location.href = "dashboardcimb.html"; // go to dashboard
+      } else {
+        alert("Invalid User ID or Password. Try again.");
+      }
+    });
+  </script>
+</body>
+
+
   <div class="dashboard-container" id="dashboardSection">
     <div class="dashboard">
       <div class="nav">
