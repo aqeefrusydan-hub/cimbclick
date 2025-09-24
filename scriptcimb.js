@@ -7,6 +7,6 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     alert("Login successful (demo)!");
     window.location.href = "dashboard.html"; // optional
   } else {
-    alert("Invalid credentials (demo only)");
+    alert("Invalid credentials");
   }
 });
