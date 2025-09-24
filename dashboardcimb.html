@@ -5,211 +5,187 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CIMB Clicks - Mockup (Login + Dashboard)</title>
   <style>
-    :root{--cimb-red:#d71920;--muted:#6b6b6b;--card:#ffffff}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:#f4f6f8;color:#222}
-
-    /* container */
-    .center{display:flex;align-items:center;justify-content:center;height:100vh}
-    .app{width:100%;max-width:1100px;margin:24px auto}
-
-    /* Login Card */
-    .card{background:var(--card);border-radius:12px;padding:28px;box-shadow:0 8px 30px rgba(20,20,20,0.08)}
-    .login-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-    .logo{width:120px}
-
-    .login-left{padding:8px}
-    .login-right{padding:8px}
-    h1{color:var(--cimb-red);margin:0 0 10px}
-    p.lead{color:var(--muted);margin:0 0 18px}
-
-    label{display:block;font-weight:600;margin-bottom:6px}
-    input[type=text],input[type=password]{width:100%;padding:10px;border:1px solid #e1e6ea;border-radius:8px;margin-bottom:12px}
-    button.primary{background:var(--cimb-red);color:#fff;border:none;padding:12px;border-radius:8px;width:100%;cursor:pointer;font-weight:700}
-    button.secondary{background:transparent;border:1px solid #ddd;padding:10px;border-radius:8px;cursor:pointer}
-
-    .muted{color:var(--muted);font-size:13px}
-
-    /* dashboard layout */
-    .dashboard{display:none}
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .userbox{display:flex;gap:12px;align-items:center}
-    .avatar{width:44px;height:44px;border-radius:8px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-weight:700}
-
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card-sm{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 20px rgba(10,10,10,0.04)}
-
-    .balance{font-size:28px;font-weight:700;color:#111}
-    .small{font-size:13px;color:var(--muted)}
-
-    /* transactions */
-    .transactions{grid-column:span 2}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;text-align:left;border-bottom:1px solid #f1f1f1}
-
-    /* responsive */
-    @media(max-width:900px){.login-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.transactions{grid-column:span 1}}
-
-    /* helper */
-    .actions{display:flex;gap:8px}
+    :root {
+      --cimb-red:#d71920;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;
+      background:#f4f6f8;
+      color:#222;
+    }
+    .login-container, .dashboard-container {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+    .card {
+      background:var(--card);
+      padding:2rem;
+      border-radius:1rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      width:360px;
+      text-align:center;
+    }
+    .logo {
+      width:140px;
+      margin-bottom:1rem;
+    }
+    h2 { color:var(--cimb-red); margin-bottom:1rem; }
+    .input-group { text-align:left; margin-bottom:1rem; }
+    label { display:block; font-weight:600; margin-bottom:0.3rem; }
+    input {
+      width:100%; padding:0.6rem;
+      border:1px solid #ccc;
+      border-radius:0.5rem;
+    }
+    button {
+      background:var(--cimb-red);
+      color:#fff;
+      border:none;
+      padding:0.8rem;
+      width:100%;
+      border-radius:0.5rem;
+      font-size:1rem;
+      cursor:pointer;
+    }
+    button:hover { background:#a9121a; }
+    .note { margin-top:1rem; font-size:0.8rem; color:var(--muted); }
+    /* Dashboard */
+    .dashboard {
+      display:none;
+      width:100%;
+      max-width:960px;
+      margin:0 auto;
+      padding:2rem;
+    }
+    .nav {
+      background:var(--cimb-red);
+      color:#fff;
+      padding:1rem 2rem;
+      border-radius:0.5rem 0.5rem 0 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .dash-card {
+      background:var(--card);
+      padding:1rem;
+      border-radius:0.75rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.06);
+    }
+    .dash-card h3 { margin-top:0; color:var(--cimb-red); }
+    .logout {
+      background:#fff;
+      color:var(--cimb-red);
+      border:1px solid #fff;
+      padding:0.5rem 1rem;
+      border-radius:0.5rem;
+      cursor:pointer;
+    }
+    .logout:hover { background:#eee; }
   </style>
 </head>
 <body>
-  <div class="app center">
-    <div id="view-login" class="card" style="width:880px">
-      <div class="login-grid">
-        <div class="login-left">
-          <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/CIMB_Bank_logo.svg/2560px-CIMB_Bank_logo.svg.png" alt="CIMB Logo">
-          <h1>CIMB Clicks (Demo)</h1>
-          <p class="lead">Secure online banking demo for FYP — frontend only. No real authentication or data storage.</p>
-
-          <form id="loginForm">
-            <label for="userid">User ID</label>
-            <input id="userid" type="text" placeholder="e.g. AEQ12345" required>
-
-            <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Enter password" required>
-
-            <div style="display:flex;gap:12px;margin-top:8px">
-              <button class="primary" type="submit">Login</button>
-              <button type="button" class="secondary" onclick="fillDemo()">Use Demo</button>
-            </div>
-            <p class="muted" style="margin-top:10px">⚠️ This is a mock interface. Do not enter real credentials.</p>
-          </form>
+  <div class="login-container" id="loginSection">
+    <div class="card">
+      <img src="logo.png" alt="CIMB Logo" class="logo">
+      <h2>Welcome to CIMB Clicks (Demo)</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">User ID</label>
+          <input type="text" id="username" placeholder="Enter User ID" required>
         </div>
-
-        <div class="login-right">
-          <div class="card-sm" style="margin-bottom:12px">
-            <strong>Quick Info</strong>
-            <p class="small">Demo features included: account summary, quick transfer (mock), recent transactions, notifications, and responsive layout for presentation.</p>
-          </div>
-
-          <div class="card-sm">
-            <strong>Mock Secure Word</strong>
-            <p class="small">For the demo, the secure word is displayed for educational purposes only.</p>
-            <div style="margin-top:8px;padding:10px;background:#fff6f6;border-radius:6px;border:1px solid #ffe6e6;color:var(--cimb-red)">DEMO-SW</div>
-          </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter Password" required>
         </div>
-      </div>
+        <button type="submit">Login</button>
+      </form>
+      <p class="note">⚠️ This is a mock project for demo only.</p>
     </div>
+  </div>
 
-    <!-- Dashboard -->
-    <div id="view-dashboard" class="dashboard" style="width:880px">
-      <div class="topbar">
-        <div>
-          <h2 style="margin:0;color:var(--cimb-red)">Welcome, <span id="display-user">User</span></h2>
-          <div class="small">Last login: <span id="last-login">--</span></div>
-        </div>
-        <div class="userbox">
-          <div class="small">Notifications <span id="notif-count">3</span></div>
-          <div class="avatar">A</div>
-        </div>
+  <div class="dashboard-container" id="dashboardSection">
+    <div class="dashboard">
+      <div class="nav">
+        <h2>CIMB Clicks Demo</h2>
+        <button class="logout" id="logoutBtn">Logout</button>
       </div>
-
       <div class="grid">
-        <div class="card-sm">
-          <div class="small">Available Balance</div>
-          <div class="balance">RM 12,345.67</div>
-          <div class="small">Account: 123-456789-0</div>
+        <div class="dash-card">
+          <h3>Account Summary</h3>
+          <p><strong>Balance:</strong> RM 12,450.00</p>
+          <p><strong>Account No:</strong> 123-456-789</p>
         </div>
-
-        <div class="card-sm">
-          <div class="small">Quick Transfer</div>
+        <div class="dash-card">
+          <h3>Quick Transfer</h3>
           <form id="transferForm">
-            <input id="toAccount" type="text" placeholder="Recipient account (mock)" required style="margin-bottom:8px">
-            <input id="amount" type="text" placeholder="Amount (RM)" required style="margin-bottom:8px">
-            <div class="actions"><button class="primary" type="submit">Send</button><button type="button" class="secondary" onclick="fillSampleTransfer()">Sample</button></div>
+            <input type="text" placeholder="Recipient Acc No" required><br><br>
+            <input type="number" placeholder="Amount (RM)" required><br><br>
+            <button type="submit">Transfer</button>
           </form>
         </div>
-
-        <div class="card-sm">
-          <div class="small">Services</div>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-            <button class="secondary">Pay Bills</button>
-            <button class="secondary">Card Services</button>
-            <button class="secondary">eStatement</button>
-          </div>
-        </div>
-
-        <div class="card-sm transactions" style="grid-column:span 2">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <strong>Recent Transactions</strong>
-            <small class="small">Showing 5</small>
-          </div>
-          <table>
-            <thead><tr><th>Date</th><th>Description</th><th>Amount (RM)</th></tr></thead>
-            <tbody id="tx-body">
-              <!-- JS will populate -->
-            </tbody>
-          </table>
-        </div>
-
-        <div class="card-sm">
-          <strong>Security Tips</strong>
-          <ul class="small">
-            <li>Never share your password.</li>
-            <li>Check URL and secure padlock when banking.</li>
-            <li>Logout after use.</li>
+        <div class="dash-card">
+          <h3>Recent Transactions</h3>
+          <ul>
+            <li>RM 200.00 - Transfer to Ali (20 Sept)</li>
+            <li>RM 50.00 - GrabPay (18 Sept)</li>
+            <li>RM 120.00 - Shopee (15 Sept)</li>
           </ul>
         </div>
-
+        <div class="dash-card">
+          <h3>Notifications</h3>
+          <p>No new notifications</p>
+        </div>
+        <div class="dash-card">
+          <h3>Security Tips</h3>
+          <p>Never share your password or TAC with anyone.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Demo data
-    const demoUser = { id: 'AEQ12345', name: 'Aqeef', lastLogin: new Date().toLocaleString(), tx: [
-      {d:'2025-09-22', desc:'Grab - Food', amt:'-25.40'},
-      {d:'2025-09-21', desc:'Salary (mock)', amt:'+5000.00'},
-      {d:'2025-09-20', desc:'Shell Petrol', amt:'-78.30'},
-      {d:'2025-09-18', desc:'Amazon', amt:'-150.99'},
-      {d:'2025-09-15', desc:'Top-up Prepaid', amt:'-30.00'}
-    ]};
+    const loginForm = document.getElementById("loginForm");
+    const loginSection = document.getElementById("loginSection");
+    const dashboardSection = document.getElementById("dashboardSection");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const transferForm = document.getElementById("transferForm");
 
-    function showDashboard(){
-      document.getElementById('view-login').style.display='none';
-      const dash = document.getElementById('view-dashboard');
-      dash.style.display='block';
-      document.getElementById('display-user').innerText = demoUser.name;
-      document.getElementById('last-login').innerText = demoUser.lastLogin;
-      const tbody = document.getElementById('tx-body');
-      tbody.innerHTML='';
-      demoUser.tx.forEach(t=>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${t.d}</td><td>${t.desc}</td><td>${t.amt}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', function(e){
+    loginForm.addEventListener("submit", function(e) {
       e.preventDefault();
-      // Simple mock check: any non-empty values allowed
-      const uid = document.getElementById('userid').value.trim();
-      if(!uid){alert('Enter User ID');return}
-      demoUser.name = uid;
-      demoUser.lastLogin = new Date().toLocaleString();
-      showDashboard();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if(user === "admin" && pass === "1234") {
+        loginSection.style.display = "none";
+        dashboardSection.style.display = "flex";
+      } else {
+        alert("Invalid credentials (demo only)");
+      }
     });
 
-    function fillDemo(){
-      document.getElementById('userid').value = demoUser.id;
-      document.getElementById('password').value = 'demo';
-    }
-
-    document.getElementById('transferForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const to = document.getElementById('toAccount').value.trim();
-      const amt = document.getElementById('amount').value.trim();
-      if(!to||!amt){alert('Fill recipient and amount (mock)');return}
-      // Add mock transaction
-      demoUser.tx.unshift({d:new Date().toISOString().slice(0,10), desc:`Transfer to ${to}`, amt:`-${parseFloat(amt).toFixed(2)}`});
-      alert('Transfer submitted (mock).');
-      showDashboard();
-      document.getElementById('toAccount').value='';document.getElementById('amount').value='';
+    logoutBtn.addEventListener("click", () => {
+      dashboardSection.style.display = "none";
+      loginSection.style.display = "flex";
     });
 
-    function fillSampleTransfer(){document.getElementById('toAccount').value='909-123456-1';document.getElementById('amount').value='50'}
+    transferForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Transfer successful (demo only)");
+      transferForm.reset();
+    });
   </script>
 </body>
 </html>
