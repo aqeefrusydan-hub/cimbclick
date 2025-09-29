@@ -3,41 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIMB Dashboard</title>
+  <title>CIMB Clicks - Dashboard</title>
   <link rel="stylesheet" href="stylecimb.css">
 </head>
 <body>
   <div class="dashboard-container">
-    <header>
-      <img src="logo.png" alt="CIMB Logo" class="logo">
-      <h1>Welcome to CIMB Dashboard</h1>
-      <button id="logoutBtn" class="logout-btn">Logout</button>
-    </header>
+    <div class="dashboard">
+      <!-- Navbar -->
+      <div class="nav">
+        <h2>CIMB Clicks</h2>
+        <button class="logout" id="logoutBtn">Logout</button>
+      </div>
 
-    <main>
-      <section class="account-info">
-        <h2>Account Summary</h2>
-        <p><strong>Account Holder:</strong> Admin User</p>
-        <p><strong>Account Number:</strong> 123-456-789</p>
-        <p><strong>Balance:</strong> RM 10,000.00</p>
-      </section>
+      <!-- Dashboard Content -->
+      <div class="grid">
+        <!-- Account Summary -->
+        <div class="dash-card">
+          <h3>Account Summary</h3>
+          <p><strong>Balance:</strong> RM 12,450.00</p>
+          <p><strong>Account No:</strong> 123-456-789</p>
+        </div>
 
-      <section class="transfer-section">
-        <h2>Fund Transfer</h2>
-        <form id="transferForm">
-          <div class="input-group">
-            <label for="toAccount">Recipient Account</label>
-            <input type="text" id="toAccount" placeholder="Enter account number" required>
-          </div>
-          <div class="input-group">
-            <label for="amount">Amount (RM)</label>
-            <input type="number" id="amount" placeholder="Enter amount" required>
-          </div>
-          <button type="submit">Transfer</button>
-        </form>
-      </section>
-    </main>
+        <!-- Quick Transfer -->
+        <div class="dash-card">
+          <h3>Quick Transfer</h3>
+          <form id="transferForm">
+            <input type="text" id="recipient" placeholder="Recipient Acc No" required><br><br>
+            <input type="number" id="amount" placeholder="Amount (RM)" required><br><br>
+            <button type="submit">Transfer</button>
+          </form>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="dash-card">
+          <h3>Recent Transactions</h3>
+          <ul>
+            <li>RM 200.00 - Transfer to Ali (20 Sept)</li>
+            <li>RM 50.00 - GrabPay (18 Sept)</li>
+            <li>RM 120.00 - Shopee (15 Sept)</li>
+          </ul>
+        </div>
+
+        <!-- Notifications -->
+        <div class="dash-card">
+          <h3>Notifications</h3>
+          <p>No new notifications</p>
+        </div>
+
+        <!-- Security Tips -->
+        <div class="dash-card">
+          <h3>Security Tips</h3>
+          <p>Never share your password or TAC with anyone.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Script -->
+  <script src="scriptcimb.js"></script>
+</body>
+</html>
+
 
   <script src="scriptcimb.js"></script>
 </body>
